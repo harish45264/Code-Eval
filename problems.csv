@@ -7,10 +7,5 @@ id,description,difficulty,title
 Merge the two lists into one sorted list. The list should be made by splicing together the nodes of the first two lists.
 
 Return the head of the merged linked list.",Easy,"Merge Two Sorted Lists"
-5,"You are given an array prices where prices[i] is the price of a given stock on the ith day.
-
-You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
-
-Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.",Easy,"Best Time to Buy and Sell Stock"
 6,"Given the head of a singly linked list, reverse the list, and return the reversed list.",Easy,"Reverse Linked List"
 7,"Given the head of a singly linked list, return the middle node of the linked list.If there are two middle nodes, return the second middle node.",Easy,"Middle of the Linked List"
