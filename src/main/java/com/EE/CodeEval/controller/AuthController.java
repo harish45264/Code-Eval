@@ -1,13 +1,8 @@
 package com.EE.CodeEval.controller;
 
 import com.EE.CodeEval.repository.*;
-import com.EE.CodeEval.dto.*; 
-import com.EE.CodeEval.service.JwtService;
-
-
-
-
-
+import com.EE.CodeEval.config.JwtService;
+import com.EE.CodeEval.dto.*;
 import com.EE.CodeEval.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

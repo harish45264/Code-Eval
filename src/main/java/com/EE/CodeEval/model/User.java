@@ -1,5 +1,9 @@
 package com.EE.CodeEval.model;
 
+import org.assertj.core.internal.bytebuddy.matcher.CollectionSizeMatcher;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,4 +23,9 @@ public class User {
     private String username;
     private String password;
     private String role;
-}
+    
+     public List<GrantedAuthority> getAuthorities() {
+        
+        return CollectionSizeMatcher.singletonList(new SimpleGrantedAuthority(role));
+    }
+}  
