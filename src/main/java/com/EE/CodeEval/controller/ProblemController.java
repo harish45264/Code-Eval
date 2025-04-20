@@ -1,15 +1,19 @@
-
 package com.EE.CodeEval.controller;
 
-
-
-import com.EE.CodeEval.model.Problem;
-import com.EE.CodeEval.repository.ProblemRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.*;
+import com.EE.CodeEval.model.*;
+import com.EE.CodeEval.service.*;
+import com.EE.CodeEval.repository.*;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/problems")
@@ -27,16 +31,18 @@ public class ProblemController {
     // 2. Get problem by ID
     @GetMapping("/{id}")
     public ResponseEntity<Problem> getProblemById(@PathVariable Long id) {
-        return repo.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return repo.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    
+    // 3. Add a new problem
     @PostMapping
     public Problem createProblem(@RequestBody Problem problem) {
         return repo.save(problem);
     }
 
-    
+    // 4. Update a problem
     @PutMapping("/{id}")
     public ResponseEntity<Problem> updateProblem(@PathVariable Long id, @RequestBody Problem updated) {
         return repo.findById(id).map(problem -> {
@@ -47,7 +53,7 @@ public class ProblemController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
-    
+    // 5. Delete a problem
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProblem(@PathVariable Long id) {
         if (repo.existsById(id)) {

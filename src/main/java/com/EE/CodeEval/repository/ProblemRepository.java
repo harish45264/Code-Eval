@@ -5,3 +5,4 @@ import com.EE.CodeEval.model.Problem;
 
 public interface ProblemRepository extends JpaRepository<Problem, Long> {
 }
+
