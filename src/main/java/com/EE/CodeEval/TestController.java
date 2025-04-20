@@ -9,11 +9,11 @@ import com.EE.CodeEval.model.*;
 @RestController
 @RequiredArgsConstructor
 public class TestController {
-    private final ProblemRepository repo;
+    // private final ProblemRepository repo;
 
     @GetMapping("/test")
     public String test() {
-        repo.save(new Problem(null, "Two Sum", "Easy", "Find two numbers..."));
-        return "Inserted!";
+        // repo.save(new Problem(null, "Two Sum", "Easy", "Find two numbers..."));
+        return "Everything is working fine brooo!!";
     }
 }
