@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.EE.CodeEval.repository.*;
 import com.EE.CodeEval.model.*;
 
-@SuppressWarnings("unused")
-// @RestController
-
 @RequiredArgsConstructor
 public class TestController {
     private final ProblemRepository repo;
