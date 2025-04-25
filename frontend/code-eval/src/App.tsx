@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./Homepage";
-import Playground from "./playground";
+import Playground from "./Playground";
 import Login from "./Loginpage";
 import SignUp from "./Signuppage";
 // import Problems from "./Problems";

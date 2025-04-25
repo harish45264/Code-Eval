@@ -1,18 +1,11 @@
 import { useState } from "react";
 import Header from "./Header";
 
-export default function Playground() {
-  const [activeTab, setActiveTab] = useState("question");
-  const [selectedLanguage, setSelectedLanguage] = useState("Java");
-  const [code, setCode] = useState(`class Solution {
-  public boolean hasDuplicate(int[] nums) {
-   // add your code here;
-}`);
+type LanguageType = "Java" | "Python" | "C++";
 
-  const languages = ["Java", "Python", "C++"];
-  
+export default function Playground() {
   // Sample code templates for different languages
-  const codeTemplates = {
+  const codeTemplates: Record<LanguageType, string> = {
     "Java": `class Solution {
   public boolean hasDuplicate(int[] nums) {
    // add your code here;
@@ -25,11 +18,16 @@ public:
         // add your code here;
 };`
   };
+  const [activeTab, setActiveTab] = useState<string>("question");
+  const [selectedLanguage, setSelectedLanguage] = useState<LanguageType>("Java");
+  const [code, setCode] = useState<string>(codeTemplates["Java"]);
+  const languages: LanguageType[] = ["Java", "Python", "C++"];
 
   // Update code when language changes
-  const handleLanguageChange = (language) => {
+  const handleLanguageChange = (language: LanguageType) => {
+    const code = codeTemplates[language];
     setSelectedLanguage(language);
-    setCode(codeTemplates[language]);
+    setCode(code);
   };
 
   return (
@@ -134,7 +132,7 @@ public:
                 <select 
                   className="bg-gray-800 text-white px-3 py-1 rounded-md"
                   value={selectedLanguage}
-                  onChange={(e) => handleLanguageChange(e.target.value)}
+                  onChange={(e) => handleLanguageChange(e.target.value as LanguageType)}
                 >
                   {languages.map((lang) => (
                     <option key={lang} value={lang}>{lang}</option>
@@ -174,7 +172,7 @@ public:
                   <textarea
                     className="bg-transparent text-white w-full h-full resize-none outline-none font-mono"
                     value={code}
-                    onChange={(e) => setCode(e.target.value)}
+                    onChange={(e) => setCode(e.target.value as string)}
                     spellCheck="false"
                   />
                 </pre>
