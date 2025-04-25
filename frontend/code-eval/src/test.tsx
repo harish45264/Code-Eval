@@ -1,28 +1,21 @@
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { testService } from './Api';
 
-const API_BASE_URL = 'http://localhost:8080';
-const api = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
-// Add request interceptor for auth tokens if needed
-api.interceptors.request.use(
-  config => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  error => Promise.reject(error)
-);
-export const productService = {
-  getAll: () => api.get('/problems'),
-  getById: (id:number) => api.get(`/problems/${id}`),
-  create: (data:any) => api.post('/problems', data),
-  update: (id:number, data:any) => api.put(`/problems/${id}`, data),
-  delete: (id:number) => api.delete(`/problems/${id}`)
+const Test: React.FC = () => {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    testService.check()
+      .then(res => setMessage(res.data))
+      .catch(err => setMessage('Failed to connect to backend') + err);
+  }, []);
+
+  return (
+    <div className="p-4">
+      <h1 className="text-xl font-bold mb-2">Backend Connection Test</h1>
+      <p className="text-lg">{message}</p>
+    </div>
+  );
 };
-export default api;
+
+export default Test;
